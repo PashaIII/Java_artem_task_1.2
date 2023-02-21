@@ -6,49 +6,49 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            //
+            //Input
             System.out.println("Длина стороны квадрата: ");
             var squareSide = new Scanner(System.in).nextFloat();
-            //
-            var calculator = new calculator(squareSide);
-            //
-            System.out.println("1. Площадь части фигуры: " + calculator.getArea1());
-            System.out.println("2. Площадь части фигуры: " + calculator.getArea2());
-            System.out.println("3. Площадь части фигуры: " + calculator.getArea3());
+            //Calc
+            var calculator = new Calculator(squareSide);
+            //Output
+            System.out.println("1. Площадь части фигуры: " + calculator.getAreaFig1());
+            System.out.println("2. Площадь части фигуры: " + calculator.getAreaFig2());
+            System.out.println("3. Площадь части фигуры: " + calculator.getAreaFig3());
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
     }
 }
 
-class calculator {
-    private squareFigure square;
-    private circleFigure circle;
+class Calculator {
+    private SquareFigure square;
+    private CircleFigure circle;
 
-    public calculator(float squareSide) {
-        square = new squareFigure(squareSide);
-        circle = new circleFigure(squareSide / 2);
+    public Calculator(float inSquareSide) {
+        square = new SquareFigure(inSquareSide);
+        circle = new CircleFigure(inSquareSide / 2);
     }
 
-    public float getArea1() {
+    public float getAreaFig1() {
         return (square.getArea() - circle.getArea()) / 2;
     }
 
-    public float getArea2() {
-        return getArea1() + circle.getArea();
+    public float getAreaFig2() {
+        return getAreaFig1() + circle.getArea();
     }
 
-    public float getArea3() {
-        return getArea1() / 2 + square.getArea() / 4;
+    public float getAreaFig3() {
+        return getAreaFig1() / 2 + square.getArea() / 4;
     }
 
 
-    class squareFigure {
-        public float squareSide;
+    class SquareFigure {
+        private float squareSide;
 
-        public squareFigure(float SquareSide) {
-            if (SquareSide <= 0) throw new IllegalStateException("Invalid value: " + SquareSide);
-            squareSide = SquareSide;
+        public SquareFigure(float inSquareSide) {
+            if (inSquareSide <= 0) {throw new IllegalStateException("Invalid value: " + inSquareSide);}
+            squareSide = inSquareSide;
         }
 
         public float getArea() {
@@ -56,12 +56,12 @@ class calculator {
         }
     }
 
-    class circleFigure {
-        public float circleRadius;
+    class CircleFigure {
+        private float circleRadius;
 
-        public circleFigure(float CircleRadius) {
-            if (CircleRadius <= 0) throw new IllegalStateException("Invalid value: " + CircleRadius);
-            circleRadius = CircleRadius;
+        public CircleFigure(float inCircleRadius) {
+            if (inCircleRadius <= 0) {throw new IllegalStateException("Invalid value: " + inCircleRadius);}
+            circleRadius = inCircleRadius;
         }
 
         public float getArea() {
